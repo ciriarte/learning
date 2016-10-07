@@ -1,0 +1,5 @@
+[package]
+
+name = "rotate_left"
+version = "0.0.1"
+authors = [ "Carlos Iriarte <me@carlosiriarte.com>" ]
