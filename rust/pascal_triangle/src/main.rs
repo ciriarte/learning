@@ -4,8 +4,8 @@ fn main() {
     let reader = io::stdin();
     let mut input = String::new();
     reader.read_line(&mut input)
-          .ok()
-          .expect("Failed to read k");
+        .ok()
+        .expect("Failed to read k");
 
     let k = input.trim().parse().ok().expect("Please enter a number");
     pascal_triangle(k);
@@ -30,9 +30,9 @@ fn pascal_triangle(k: usize) {
             print!("{:?} ", matrix[idx]);
 
             if i == j {
-              break;
+                break;
             }
         }
         println!("");
-    }    
+    }
 }
