@@ -1,0 +1,6 @@
+[package]
+name = "ascii_sierpinski"
+version = "0.1.0"
+authors = ["Carlos Iriarte <ciriarte@gmail.com>"]
+
+[dependencies]
