@@ -39,7 +39,7 @@ impl SierpinskiTriangle {
     }
 
     pub fn display(&mut self) {
-        for j in 0..(self.iterations / 2) {
+        for _ in 0..(self.iterations / 2) {
             for i in 0..self.b.len() {
                 print!("{0}", if self.b[i] { "*" } else { " " });
             }
