@@ -42,8 +42,8 @@ impl App {
     fn update(&mut self, args: &UpdateArgs) {
         self.direction_x = if self.pos_x >= 0.0 && self.pos_x <= 200.0 - 50.0 { self.direction_x } else { self.direction_x * -1.0 };
         self.direction_y = if self.pos_y >= 0.0 && self.pos_y <= 200.0 - 50.0 { self.direction_y } else { self.direction_y * -1.0 };
-        self.pos_x = self.pos_x + self.direction_x * args.dt;
-        self.pos_y = self.pos_y + self.direction_y * args.dt;
+        self.pos_x = self.pos_x + self.direction_x * args.dt * 2.0;
+        self.pos_y = self.pos_y + self.direction_y * args.dt * 2.0;
     }
 }
 
