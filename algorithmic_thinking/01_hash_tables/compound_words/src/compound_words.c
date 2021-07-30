@@ -2,17 +2,17 @@
 #include <stdlib.h>
 #include <string.h>
 
-char *read_line(int size) {
+char *read_line(unsigned int size) {
   char *str;
-  int ch;
-  int len = 0;
+  char ch;
+  unsigned int len = 0;
   str = malloc(size);
   if (str == NULL) {
     fprintf(stderr, "malloc error\n");
     exit(1);
   }
 
-  while ((ch = getchar()) != EOF && (ch != '\n')) {
+  while ((ch = (char)getchar()) != EOF && (ch != '\n')) {
     str[len++] = ch;
     if (len == size) {
       size = size * 2;
@@ -37,11 +37,11 @@ typedef struct word_node {
 #define hashsize(n) ((unsigned long)1 << (n))
 #define hashmask(n) (hashsize(n) - 1)
 
-unsigned long oaat(char *key, unsigned long len,
-                   unsigned long bits) {
-  unsigned long hash, i;
+unsigned long oaat(char *key, size_t len,
+                   size_t bits) {
+  size_t hash, i;
   for (hash = 0, i = 0; i < len; i++) {
-    hash += key[i];
+    hash += (unsigned long)key[i];
     hash += (hash << 10);
     hash ^= (hash >> 6);
   }
@@ -52,8 +52,8 @@ unsigned long oaat(char *key, unsigned long len,
   return hash & hashmask(bits);
 }
 
-int in_hash_table(word_node *hash_table[], char *find, unsigned find_len) {
-  unsigned word_code;
+int in_hash_table(word_node *hash_table[], char *find, size_t find_len) {
+  unsigned long word_code;
   word_node *wordptr;
   word_code = oaat(find, find_len, NUM_BITS);
   wordptr = hash_table[word_code];
@@ -68,9 +68,9 @@ int in_hash_table(word_node *hash_table[], char *find, unsigned find_len) {
 
 void identify_compound_words(char *words[],
                              word_node *hash_table[],
-                             int total_words) {
-  int i, j;
-  unsigned len;
+                             size_t total_words) {
+  unsigned int i, j;
+  size_t len;
   for (i = 0; i < total_words; i++) {
     len = strlen(words[i]);
     for (j = 1; j < len; j++) {
@@ -88,10 +88,10 @@ void identify_compound_words(char *words[],
 int main(void){
   static char *words[1 << NUM_BITS] = { NULL };
   static word_node *hash_table[1 << NUM_BITS] = { NULL };
-  int total = 0;
+  size_t total = 0;
   char *word;
   word_node *wordptr;
-  unsigned length, word_code;
+  size_t length, word_code;
   word = read_line(WORD_LENGTH);
   while (*word) {
     words[total] = word;
