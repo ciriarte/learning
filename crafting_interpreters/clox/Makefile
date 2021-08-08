@@ -12,23 +12,23 @@ BIN_DIR := bin
 EXE := clox
 
 CC := cc
-COMMONFLAGS := -c -g -Wall -Wextra -O2
+COMMONFLAGS := -c -g -Wall -Wextra
 CFLAGS := $(COMMONFLAGS) -I$(SRC_DIR)/ -std=c17
 LDFLAGS := -g
 
 SRCS := $(wildcard $(SRC_DIR)/*.c)
 OBJS := $(subst $(SRC_DIR)/,$(OBJ_DIR)/,$(SRCS:.c=.o))
 
-.PHONY: all clean distclean
+.PHONY: all clean
 
 all: $(BIN_DIR)/$(EXE)
 
 $(BIN_DIR)/$(EXE): $(OBJS)
-		mkdir -p $(BIN_DIR)
+		@mkdir -p $(BIN_DIR)
 		$(CC) $(LDFLAGS) $? -o $@
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-		mkdir -p $(OBJ_DIR)
+		@mkdir -p $(OBJ_DIR)
 		$(CC) $(CFLAGS) $< -o $@
 
 clean:
